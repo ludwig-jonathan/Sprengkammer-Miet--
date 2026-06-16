@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zustellung Projektpflichtenheft AP 2.5.5 Sprengkammer (Miet-) in</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1000px;
+      padding: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.55rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 1.35rem;
+      color: #aaaaaa;
+      margin-bottom: 3.5rem;
+      font-weight: 500;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .time-unit {
+      background: rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      min-width: 160px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .number {
+      font-size: 5.8rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .label {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-top: 0.8rem;
+      color: #aaaaaa;
+      font-weight: 500;
+    }
+
+    .alert {
+      display: none;
+      margin-top: 3rem;
+      padding: 1.5rem 3rem;
+      background: #450a0a;
+      color: #ff6666;
+      border-radius: 16px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Zustellung Projektpflichtenheft AP 2.5.5<br>Sprengkammer (Miet-)</h1>
+    <p class="subtitle"> in</p>
+    
+    <div class="countdown" id="countdown">
+      <div class="time-unit">
+        <div class="number" id="days">00</div>
+        <div class="label">Tage</div>
+      </div>
+      <div class="time-unit">
+        <div class="number" id="hours">00</div>
+        <div class="label">Stunden</div>
+      </div>
+      <div class="time-unit">
+        <div class="number" id="minutes">00</div>
+        <div class="label">Minuten</div>
+      </div>
+      <div class="time-unit">
+        <div class="number" id="seconds">00</div>
+        <div class="label">Sekunden</div>
+      </div>
+    </div>
+
+    <div class="alert" id="alert">
+      🎉 Die Frist ist abgelaufen!
+    </div>
+  </div>
+
+  <script>
+    const targetDate = new Date("2026-07-15T09:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("alert").style.display = "block";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
